@@ -17,7 +17,7 @@
     </style>
 </head>
 <body>
-<a href="https://www.amazon.com/World-Flight-Patterns-26-38/dp/B01GSHUCTC" style="
+<a href="https://www.amazon.com/World-Flight-Patterns-26-38/dp/B01GSHUCTC" onclick="trackOutboundLink('https://www.amazon.com/World-Flight-Patterns-26-38/dp/B01GSHUCTC'); return false; style="
     font-size: 18px;
     font-family: Verdana,sans-serif;
     text-decoration: none;
@@ -58,6 +58,20 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
   ga('create', 'UA-54893253-1', 'auto');
   ga('send', 'pageview');
+</script>
+<script>
+/**
+* Function that tracks a click on an outbound link in Analytics.
+* This function takes a valid URL string as an argument, and uses that URL string
+* as the event label. Setting the transport method to 'beacon' lets the hit be sent
+* using 'navigator.sendBeacon' in browser that support it.
+*/
+var trackOutboundLink = function(url) {
+   ga('send', 'event', 'outbound', 'click', url, {
+     'transport': 'beacon',
+     'hitCallback': function(){document.location = url;}
+   });
+}
 </script>
 </body>
 </html>
